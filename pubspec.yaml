@@ -1,0 +1,121 @@
+name: tabiby
+description: "طبيبي — منصة شاملة للرعاية الصحية تربط المرضى بالأطباء وتتيح حجز المواعيد وإدارة السجلات الطبية."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ─── الأيقونات ───────────────────────────────────────────
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.10+1          # دعم صور SVG
+  flutter_launcher_icons: ^0.14.3 # أيقونة التطبيق
+
+  # ─── Firebase ────────────────────────────────────────────
+  firebase_core: ^3.13.0
+  firebase_auth: ^5.5.2           # تسجيل الدخول
+  cloud_firestore: ^5.6.6         # قاعدة البيانات
+  firebase_storage: ^12.4.5       # تخزين الصور والملفات
+  firebase_messaging: ^15.2.5     # الإشعارات Push
+
+  # ─── إدارة الحالة (State Management) ────────────────────
+  provider: ^6.1.2
+
+  # ─── التنقل (Navigation) ─────────────────────────────────
+  go_router: ^15.1.2
+
+  # ─── الشبكة والبيانات ─────────────────────────────────────
+  dio: ^5.8.0+1                   # طلبات HTTP
+  connectivity_plus: ^6.1.4       # التحقق من الاتصال بالإنترنت
+
+  # ─── الصور ───────────────────────────────────────────────
+  cached_network_image: ^3.4.1    # تحميل وتخزين الصور من الإنترنت
+  image_picker: ^1.1.2            # اختيار صورة من الجهاز
+  flutter_image_compress: ^2.3.0  # ضغط الصور قبل الرفع
+
+  # ─── التخزين المحلي ──────────────────────────────────────
+  shared_preferences: ^2.5.3      # تخزين بيانات بسيطة محلياً
+  hive_flutter: ^1.1.0            # قاعدة بيانات محلية سريعة
+
+  # ─── التوقيت والتاريخ ────────────────────────────────────
+  intl: ^0.20.2                   # تنسيق التواريخ والأرقام (دعم العربية)
+
+  # ─── الخرائط والموقع ──────────────────────────────────────
+  google_maps_flutter: ^2.10.0    # خرائط جوجل
+  geolocator: ^13.0.2             # تحديد الموقع الجغرافي
+  geocoding: ^3.0.0               # تحويل الإحداثيات إلى عناوين
+
+  # ─── الإشعارات المحلية ───────────────────────────────────
+  flutter_local_notifications: ^18.0.1
+
+  # ─── الحركات والرسوم المتحركة ─────────────────────────────
+  lottie: ^3.3.1                  # رسوم متحركة Lottie
+  shimmer: ^3.0.0                 # تأثير التحميل
+
+  # ─── واجهة المستخدم ──────────────────────────────────────
+  google_fonts: ^6.2.1            # خطوط جوجل
+  flutter_staggered_grid_view: ^0.7.0 # عرض شبكي متدرج
+  smooth_page_indicator: ^1.2.0+3 # مؤشرات الصفحات
+  carousel_slider: ^5.0.0         # عرض شرائح
+  fluttertoast: ^8.2.12           # رسائل Toast
+  badges: ^3.1.2                  # شارات الإشعارات
+  skeletonizer: ^1.4.2            # تأثير الهيكل العظمي للتحميل
+
+  # ─── مشاركة المحتوى ────────────────────────────────────
+  share_plus: ^10.1.4             # مشاركة المحتوى
+  url_launcher: ^6.3.1            # فتح الروابط
+
+  # ─── الأذونات ────────────────────────────────────────────
+  permission_handler: ^11.4.0
+
+  # ─── تسجيل الدخول الاجتماعي ──────────────────────────────
+  google_sign_in: ^6.2.2
+
+  # ─── متنوع ───────────────────────────────────────────────
+  uuid: ^4.5.1                    # توليد معرّفات فريدة
+  timeago: ^3.7.0                 # عرض الوقت بشكل نسبي (منذ 5 دقائق...)
+  flutter_animate: ^4.5.2         # رسوم متحركة سهلة وسلسة
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+# ─── إعدادات أيقونة التطبيق ──────────────────────────────
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
+
+# ─── إعدادات Flutter ─────────────────────────────────────
+flutter:
+  uses-material-design: true
+
+  # ─── الـ Assets ─────────────────────────────────────────
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+    - assets/data/
+
+  # ─── الخطوط ─────────────────────────────────────────────
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/Cairo-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Cairo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Cairo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Cairo-Bold.ttf
+          weight: 700
