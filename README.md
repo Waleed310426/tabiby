@@ -210,8 +210,5 @@ GOOGLE_MAPS_API_KEY=your_api_key_here
 
 <br>
 
----
-
-صُنع بـ ❤️ في اليمن
 
 </div>
