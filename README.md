@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/icons/app_icon.png" alt="Tabiby Logo" width="150" height="150" style="border-radius: 50%; border: 3px solid #1565C0; padding: 5px; background: white;" />
+<img src="https://github.com/Waleed310426/tabiby/blob/main/assets/icons/app_icon.png?raw=true" width="150" style="border-radius: 50%;" />
 
 # 🏥 طبيبي — Tabiby
 
