@@ -1,0 +1,33 @@
+# ─── تجاهل ملفات المنصات الأصلية من إحصاءات اللغة في GitHub ─────────────────
+
+# Windows native files
+windows/**         linguist-vendored
+windows/*.cpp      linguist-vendored
+windows/*.h        linguist-vendored
+
+# Linux native files
+linux/**           linguist-vendored
+
+# macOS native files
+macos/**           linguist-vendored
+
+# iOS native files
+ios/**             linguist-vendored
+
+# Android native files
+android/**         linguist-vendored
+
+# Web generated files
+web/**             linguist-vendored
+
+# CMake files
+*.cmake            linguist-vendored
+CMakeLists.txt     linguist-vendored
+
+# Generated files
+*.g.dart           linguist-generated
+*.freezed.dart     linguist-generated
+
+# ─── تحديد Dart كلغة رئيسية ────────────────────────────────────────────────
+*.dart             linguist-detectable
+lib/**             linguist-detectable
