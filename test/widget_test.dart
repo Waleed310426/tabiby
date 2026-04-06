@@ -1,9 +1,13 @@
-// This is a basic Flutter widget test.
+// ============================================================
+// ملف: widget_test.dart
+// الوصف: ملف اختبار الواجهات الأساسي لتطبيق طبيبي
+// يحتوي على اختبارات بسيطة للتحقق من أن التطبيق يعمل بشكل صحيح
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// ملاحظة: هذا المجلد (test/) خُصّص لاختبارات Flutter
+//   - unit tests: اختبار الدوال والكلاسات بشكل منفرد
+//   - widget tests: اختبار واجهات المستخدم
+//   - integration tests: اختبار التكامل بين الأجزاء
+// ============================================================
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,20 +15,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tabiby/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  // ─── اختبار تشغيل التطبيق بنجاح ─────────────────────────
+  testWidgets('التأكد من أن تطبيق طبيبي يبدأ بدون أخطاء',
+      (WidgetTester tester) async {
+    // بناء شجرة الواجهات وتحميل التطبيق
+    await tester.pumpWidget(const TabibyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // التحقق من أن التطبيق يعرض واجهة ما بدون انهيار
+    expect(find.byType(MaterialApp), findsOneWidget);
   });
 }
