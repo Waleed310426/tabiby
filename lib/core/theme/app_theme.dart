@@ -1,19 +1,13 @@
 // ============================================================
 // ملف: app_theme.dart
 // الوصف: إعدادات الثيم الكاملة لتطبيق طبيبي
-// يحدد المظهر البصري لكل عناصر التطبيق (أزرار، حقول، خطوط...)
-//
-// الاستخدام في main.dart:
-//   theme: AppTheme.light,
-//   darkTheme: AppTheme.dark,
+// الخطوط تُحمَّل من assets/fonts/ مباشرة (Cairo المحلي)
 // ============================================================
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../constants/app_colors.dart';
 
 class AppTheme {
-  // منع إنشاء كائن من هذه الكلاس
   AppTheme._();
 
   // ─── الثيم النهاري (Light Theme) ────────────────────────────
@@ -21,8 +15,8 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
+      fontFamily: 'Cairo', // خط Cairo المحلي من assets/fonts/
 
-      // نظام الألوان
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
         brightness: Brightness.light,
@@ -32,24 +26,24 @@ class AppTheme {
         surface: AppColors.backgroundCard,
       ),
 
-      // خط Cairo العربي
       textTheme: _buildTextTheme(isLight: true),
 
-      // ─── شريط التطبيق (AppBar) ─────────────────────────────
-      appBarTheme: AppBarTheme(
+      // ─── شريط التطبيق ──────────────────────────────────────
+      appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        titleTextStyle: GoogleFonts.cairo(
+        titleTextStyle: TextStyle(
+          fontFamily: 'Cairo',
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
 
-      // ─── الأزرار الرئيسية (ElevatedButton) ─────────────────
+      // ─── الأزرار الرئيسية ───────────────────────────────────
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
@@ -59,14 +53,15 @@ class AppTheme {
             borderRadius: BorderRadius.circular(14),
           ),
           elevation: 0,
-          textStyle: GoogleFonts.cairo(
+          textStyle: const TextStyle(
+            fontFamily: 'Cairo',
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
         ),
       ),
 
-      // ─── أزرار الحدود (OutlinedButton) ──────────────────────
+      // ─── أزرار الحدود ───────────────────────────────────────
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.primary,
@@ -75,25 +70,27 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
           ),
-          textStyle: GoogleFonts.cairo(
+          textStyle: const TextStyle(
+            fontFamily: 'Cairo',
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
         ),
       ),
 
-      // ─── أزرار النص (TextButton) ─────────────────────────────
+      // ─── أزرار النص ─────────────────────────────────────────
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: AppColors.primary,
-          textStyle: GoogleFonts.cairo(
+          textStyle: const TextStyle(
+            fontFamily: 'Cairo',
             fontSize: 14,
             fontWeight: FontWeight.w600,
           ),
         ),
       ),
 
-      // ─── حقول الإدخال (TextField / TextFormField) ───────────
+      // ─── حقول الإدخال ───────────────────────────────────────
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.backgroundLight,
@@ -119,21 +116,24 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
-        hintStyle: GoogleFonts.cairo(
+        hintStyle: const TextStyle(
+          fontFamily: 'Cairo',
           color: AppColors.textHint,
           fontSize: 14,
         ),
-        labelStyle: GoogleFonts.cairo(
+        labelStyle: const TextStyle(
+          fontFamily: 'Cairo',
           color: AppColors.textSecondary,
           fontSize: 14,
         ),
-        errorStyle: GoogleFonts.cairo(
+        errorStyle: const TextStyle(
+          fontFamily: 'Cairo',
           color: AppColors.error,
           fontSize: 12,
         ),
       ),
 
-      // ─── البطاقات (Card) ───────────────────────────────────────────
+      // ─── البطاقات ───────────────────────────────────────────
       cardTheme: CardThemeData(
         color: AppColors.backgroundCard,
         elevation: 2,
@@ -144,7 +144,7 @@ class AppTheme {
         margin: EdgeInsets.zero,
       ),
 
-      // ─── شريط التنقل السفلي (BottomNavigationBar) ───────────
+      // ─── شريط التنقل السفلي ─────────────────────────────────
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: Colors.white,
         selectedItemColor: AppColors.primary,
@@ -153,22 +153,20 @@ class AppTheme {
         elevation: 8,
       ),
 
-      // ─── خط الفصل (Divider) ──────────────────────────────────
       dividerTheme: const DividerThemeData(
         color: AppColors.divider,
         thickness: 1,
         space: 1,
       ),
 
-      // ─── مؤشر التحميل (CircularProgressIndicator) ───────────
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColors.primary,
       ),
 
-      // ─── الرقائق (Chip) ──────────────────────────────────────
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.infoLight,
-        labelStyle: GoogleFonts.cairo(
+        labelStyle: const TextStyle(
+          fontFamily: 'Cairo',
           color: AppColors.primary,
           fontSize: 12,
         ),
@@ -177,7 +175,6 @@ class AppTheme {
         ),
       ),
 
-      // ─── خلفية الصفحات ──────────────────────────────────────
       scaffoldBackgroundColor: AppColors.backgroundLight,
     );
   }
@@ -187,6 +184,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
+      fontFamily: 'Cairo',
 
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.primary,
@@ -199,12 +197,13 @@ class AppTheme {
 
       textTheme: _buildTextTheme(isLight: false),
 
-      appBarTheme: AppBarTheme(
-        backgroundColor: const Color(0xFF1A1A2E),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xFF1A1A2E),
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
-        titleTextStyle: GoogleFonts.cairo(
+        titleTextStyle: TextStyle(
+          fontFamily: 'Cairo',
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -242,7 +241,7 @@ class AppTheme {
     );
   }
 
-  // ─── بناء نظام الخطوط (Cairo) ────────────────────────────────
+  // ─── بناء نظام الخطوط ────────────────────────────────────────
   static TextTheme _buildTextTheme({required bool isLight}) {
     final Color mainColor =
         isLight ? AppColors.textPrimary : Colors.white;
@@ -250,63 +249,16 @@ class AppTheme {
         isLight ? AppColors.textSecondary : Colors.white70;
 
     return TextTheme(
-      // عناوين كبيرة — مثل اسم التطبيق في شاشة Splash
-      displayLarge: GoogleFonts.cairo(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-        color: mainColor,
-      ),
-      // عناوين الصفحات الرئيسية
-      headlineLarge: GoogleFonts.cairo(
-        fontSize: 24,
-        fontWeight: FontWeight.bold,
-        color: mainColor,
-      ),
-      // عناوين الأقسام
-      headlineMedium: GoogleFonts.cairo(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: mainColor,
-      ),
-      // عناوين البطاقات
-      titleLarge: GoogleFonts.cairo(
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-        color: mainColor,
-      ),
-      titleMedium: GoogleFonts.cairo(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-        color: mainColor,
-      ),
-      // نص الجسم الأساسي
-      bodyLarge: GoogleFonts.cairo(
-        fontSize: 16,
-        fontWeight: FontWeight.normal,
-        color: mainColor,
-      ),
-      bodyMedium: GoogleFonts.cairo(
-        fontSize: 14,
-        fontWeight: FontWeight.normal,
-        color: mainColor,
-      ),
-      // نصوص ثانوية صغيرة
-      bodySmall: GoogleFonts.cairo(
-        fontSize: 12,
-        fontWeight: FontWeight.normal,
-        color: secondaryColor,
-      ),
-      // نص الأزرار
-      labelLarge: GoogleFonts.cairo(
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-        color: mainColor,
-      ),
-      labelSmall: GoogleFonts.cairo(
-        fontSize: 10,
-        fontWeight: FontWeight.normal,
-        color: secondaryColor,
-      ),
+      displayLarge: TextStyle(fontFamily: 'Cairo', fontSize: 32, fontWeight: FontWeight.bold, color: mainColor),
+      headlineLarge: TextStyle(fontFamily: 'Cairo', fontSize: 24, fontWeight: FontWeight.bold, color: mainColor),
+      headlineMedium: TextStyle(fontFamily: 'Cairo', fontSize: 20, fontWeight: FontWeight.bold, color: mainColor),
+      titleLarge: TextStyle(fontFamily: 'Cairo', fontSize: 18, fontWeight: FontWeight.w600, color: mainColor),
+      titleMedium: TextStyle(fontFamily: 'Cairo', fontSize: 16, fontWeight: FontWeight.w600, color: mainColor),
+      bodyLarge: TextStyle(fontFamily: 'Cairo', fontSize: 16, fontWeight: FontWeight.normal, color: mainColor),
+      bodyMedium: TextStyle(fontFamily: 'Cairo', fontSize: 14, fontWeight: FontWeight.normal, color: mainColor),
+      bodySmall: TextStyle(fontFamily: 'Cairo', fontSize: 12, fontWeight: FontWeight.normal, color: secondaryColor),
+      labelLarge: TextStyle(fontFamily: 'Cairo', fontSize: 16, fontWeight: FontWeight.w600, color: mainColor),
+      labelSmall: TextStyle(fontFamily: 'Cairo', fontSize: 10, fontWeight: FontWeight.normal, color: secondaryColor),
     );
   }
 }

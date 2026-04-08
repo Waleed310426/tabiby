@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/icons/app_icon.jpg" alt="Tabiby Logo" width="150" height="150" style="border-radius: 50%; border: 3px solid #1565C0; padding: 5px; background: white;" />
+<img src="assets/icons/app_icon.jpg" alt="Tabibi Logo" width="150" height="150" style="border-radius: 50%; border: 3px solid #1565C0; padding: 5px; background: white;" />
 
-# 🏥 طبيبي — Tabiby
+# 🏥 طبيبي — Tabibi
 
 ### منصة الرعاية الصحية الذكية
 
@@ -17,7 +17,7 @@
 
 ## 📖 نبذة عن التطبيق
 
-**طبيبي (Tabiby)** هو تطبيق صحي شامل يهدف إلى تسهيل التواصل بين المرضى والأطباء في اليمن. يتيح التطبيق للمرضى حجز المواعيد، والاستشارة الطبية عن بُعد، ومتابعة سجلاتهم الطبية بكل سهولة ويسر، بينما يمنح الأطباء أدوات احترافية لإدارة عياداتهم ومرضاهم.
+**طبيبي (Tabibi)** هو تطبيق صحي شامل يهدف إلى تسهيل التواصل بين المرضى والأطباء في اليمن. يتيح التطبيق للمرضى حجز المواعيد، والاستشارة الطبية عن بُعد، ومتابعة سجلاتهم الطبية بكل سهولة ويسر، بينما يمنح الأطباء أدوات احترافية لإدارة عياداتهم ومرضاهم.
 
 ---
 
@@ -109,7 +109,7 @@
 ## 📁 هيكل المشروع
 
 ```
-tabiby/
+tabibi/
 ├── lib/
 │   ├── core/
 │   │   ├── constants/            # الثوابت والألوان والنصوص
@@ -176,8 +176,8 @@ tabiby/
 
 ```bash
 # 1. استنساخ المشروع
-git clone https://github.com/your-username/tabiby.git
-cd tabiby
+git clone https://github.com/your-username/tabibi.git
+cd tabibi
 
 # 2. تثبيت الحزم
 flutter pub get

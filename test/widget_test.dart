@@ -12,14 +12,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:tabiby/main.dart';
+import 'package:tabibi/main.dart';
 
 void main() {
   // ─── اختبار تشغيل التطبيق بنجاح ─────────────────────────
   testWidgets('التأكد من أن تطبيق طبيبي يبدأ بدون أخطاء',
       (WidgetTester tester) async {
     // بناء شجرة الواجهات وتحميل التطبيق
-    await tester.pumpWidget(const TabibyApp());
+    await tester.pumpWidget(const TabibiApp());
 
     // التحقق من أن التطبيق يعرض واجهة ما بدون انهيار
     expect(find.byType(MaterialApp), findsOneWidget);

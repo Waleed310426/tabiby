@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.tabiby.clinic" "\0"
-            VALUE "FileDescription", "tabiby" "\0"
+            VALUE "CompanyName", "com.tabibi.clinic" "\0"
+            VALUE "FileDescription", "tabibi" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "tabiby" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 com.tabiby.clinic. All rights reserved." "\0"
-            VALUE "OriginalFilename", "tabiby.exe" "\0"
-            VALUE "ProductName", "tabiby" "\0"
+            VALUE "InternalName", "tabibi" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.tabibi.clinic. All rights reserved." "\0"
+            VALUE "OriginalFilename", "tabibi.exe" "\0"
+            VALUE "ProductName", "tabibi" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

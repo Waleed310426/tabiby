@@ -1,4 +1,4 @@
-name: tabiby
+name: tabibi
 description: "طبيبي — منصة شاملة للرعاية الصحية تربط المرضى بالأطباء وتتيح حجز المواعيد وإدارة السجلات الطبية."
 publish_to: 'none'
 
@@ -9,6 +9,8 @@ environment:
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
   # ─── الأيقونات ───────────────────────────────────────────
@@ -80,6 +82,7 @@ dependencies:
   uuid: ^4.5.1                    # توليد معرّفات فريدة
   timeago: ^3.7.0                 # عرض الوقت بشكل نسبي (منذ 5 دقائق...)
   flutter_animate: ^4.5.2         # رسوم متحركة سهلة وسلسة
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:

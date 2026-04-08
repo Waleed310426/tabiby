@@ -14,7 +14,7 @@ class AppStrings {
 
   // ─── اسم التطبيق ────────────────────────────────────────────
   static const String appName = 'طبيبي';
-  static const String appNameEn = 'Tabiby';
+  static const String appNameEn = 'Tabibi';
   static const String appTagline = 'رعايتك أولويتنا';
 
   // ─── شاشة تسجيل الدخول والتسجيل ────────────────────────────

@@ -11,9 +11,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 enum UserRole {
   patient,    // مريض
   doctor,     // طبيب
-  pharmacy,   // صيدلية
-  lab,        // مختبر / مركز أشعة
-  emergency,  // خدمات الطوارئ والإسعاف
   admin,      // الأدمن (الإدارة العليا)
 }
 
@@ -167,6 +164,47 @@ class UserModel {
           .toList(),
       createdAt: (data['created_at'] as Timestamp).toDate(),
       updatedAt: (data['updated_at'] as Timestamp).toDate(),
+      isVerified: data['is_verified'] ?? false,
+      status: AccountStatus.values.firstWhere(
+        (s) => s.name == data['status'],
+        orElse: () => AccountStatus.active,
+      ),
+    );
+  }
+
+  // ─── إنشاء النموذج من JSON (REST API) ────────────────────
+  factory UserModel.fromJson(Map<String, dynamic> data) {
+    return UserModel(
+      id: data['id'] ?? '',
+      fullName: data['full_name'] ?? '',
+      phoneNumber: data['phone_number'] ?? '',
+      email: data['email'],
+      role: UserRole.values.firstWhere(
+        (r) => r.name == data['role'],
+        orElse: () => UserRole.patient,
+      ),
+      profileImageUrl: data['profile_image_url'],
+      dateOfBirth: data['date_of_birth'] != null
+          ? DateTime.tryParse(data['date_of_birth'].toString())
+          : null,
+      gender: data['gender'] != null
+          ? Gender.values.firstWhere((g) => g.name == data['gender'], orElse: () => Gender.other)
+          : null,
+      bloodType: data['blood_type'] != null
+          ? BloodType.values.firstWhere((b) => b.name == data['blood_type'], orElse: () => BloodType.oPositive)
+          : null,
+      chronicDiseases: List<String>.from(data['chronic_diseases'] ?? []),
+      allergies: List<String>.from(data['allergies'] ?? []),
+      currentMedications: List<String>.from(data['current_medications'] ?? []),
+      emergencyContacts: (data['emergency_contacts'] as List<dynamic>? ?? [])
+          .map((e) => EmergencyContact.fromMap(e))
+          .toList(),
+      createdAt: data['created_at'] != null 
+          ? DateTime.tryParse(data['created_at'].toString()) ?? DateTime.now()
+          : DateTime.now(),
+      updatedAt: data['updated_at'] != null 
+          ? DateTime.tryParse(data['updated_at'].toString()) ?? DateTime.now()
+          : DateTime.now(),
       isVerified: data['is_verified'] ?? false,
       status: AccountStatus.values.firstWhere(
         (s) => s.name == data['status'],

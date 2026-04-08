@@ -1,0 +1,22 @@
+Analyzing Tabibi...                                             
+
+   info - The imported package 'http' isn't a dependency of the importing package - lib\core\network\api_client.dart:7:8 - depend_on_referenced_packages
+   info - The private field _suspendedUsers could be 'final' - lib\features\admin\presentation\manager\admin_provider.dart:23:19 - prefer_final_fields
+  error - The getter 'fullName' isn't defined for the type 'DoctorModel' - lib\features\admin\presentation\view\pages\admin_dashboard_page.dart:431:36 - undefined_getter
+  error - The getter 'fullName' isn't defined for the type 'DoctorModel' - lib\features\admin\presentation\view\pages\admin_dashboard_page.dart:431:65 - undefined_getter
+  error - The method 'fromJson' isn't defined for the type 'UserModel' - lib\features\auth\data\manage\auth_remote_data_source.dart:41:22 - undefined_method
+  error - The method 'fromJson' isn't defined for the type 'UserModel' - lib\features\auth\data\manage\auth_remote_data_source.dart:69:22 - undefined_method
+   info - The private field _totalPatients could be 'final' - lib\features\doctor\presentation\manager\doctor_provider.dart:35:7 - prefer_final_fields
+   info - The private field _monthlyRevenue could be 'final' - lib\features\doctor\presentation\manager\doctor_provider.dart:39:10 - prefer_final_fields
+  error - Invalid constant value - lib\features\doctor\presentation\view\pages\doctor_dashboard_page.dart:129:19 - invalid_constant
+  error - The getter 'primaryGradient' isn't defined for the type 'AppColors' - lib\features\doctor\presentation\view\pages\doctor_dashboard_page.dart:129:29 - undefined_getter
+  error - The method 'fromJson' isn't defined for the type 'DoctorModel' - lib\features\patient\data\manage\patient_remote_data_source.dart:44:36 - undefined_method
+  error - The method 'fromJson' isn't defined for the type 'DoctorModel' - lib\features\patient\data\manage\patient_remote_data_source.dart:53:24 - undefined_method
+  error - The method 'fromJson' isn't defined for the type 'AppointmentModel' - lib\features\patient\data\manage\patient_remote_data_source.dart:77:29 - undefined_method
+  error - The method 'fromJson' isn't defined for the type 'AppointmentModel' - lib\features\patient\data\manage\patient_remote_data_source.dart:91:30 - undefined_method
+  error - The method 'fromJson' isn't defined for the type 'MedicalRecordModel' - lib\features\patient\data\manage\patient_remote_data_source.dart:112:32 - undefined_method
+  error - The getter 'profileImageUrl' isn't defined for the type 'DoctorModel' - lib\features\patient\presentation\view\widgets\doctor_card_widget.dart:63:31 - undefined_getter
+  error - The getter 'profileImageUrl' isn't defined for the type 'DoctorModel' - lib\features\patient\presentation\view\widgets\doctor_card_widget.dart:64:33 - undefined_getter
+  error - The getter 'profileImageUrl' isn't defined for the type 'DoctorModel' - lib\features\patient\presentation\view\widgets\doctor_card_widget.dart:66:21 - undefined_getter
+  error - The getter 'fullName' isn't defined for the type 'DoctorModel' - lib\features\patient\presentation\view\widgets\doctor_card_widget.dart:79:24 - undefined_getter
+

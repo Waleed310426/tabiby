@@ -62,6 +62,8 @@ class WorkingHours {
 class DoctorModel {
   final String id;                          // معرّف الطبيب الفريد
   final String userId;                      // معرّف المستخدم المرتبط به
+  final String fullName;                    // اسم الطبيب الكامل
+  final String? profileImageUrl;            // صورة الطبيب الشخصية
   final String specialty;                   // التخصص الرئيسي
   final List<String> subSpecialties;        // التخصصات الفرعية
   final String medicalLicenseNumber;        // رقم الترخيص الطبي
@@ -85,6 +87,8 @@ class DoctorModel {
   const DoctorModel({
     required this.id,
     required this.userId,
+    this.fullName = '',
+    this.profileImageUrl,
     required this.specialty,
     this.subSpecialties = const [],
     required this.medicalLicenseNumber,
@@ -111,6 +115,8 @@ class DoctorModel {
     return {
       'id': id,
       'user_id': userId,
+      'full_name': fullName,
+      'profile_image_url': profileImageUrl,
       'specialty': specialty,
       'sub_specialties': subSpecialties,
       'medical_license_number': medicalLicenseNumber,
@@ -139,6 +145,8 @@ class DoctorModel {
     return DoctorModel(
       id: doc.id,
       userId: data['user_id'] ?? '',
+      fullName: data['full_name'] ?? '',
+      profileImageUrl: data['profile_image_url'],
       specialty: data['specialty'] ?? '',
       subSpecialties: List<String>.from(data['sub_specialties'] ?? []),
       medicalLicenseNumber: data['medical_license_number'] ?? '',
@@ -167,8 +175,45 @@ class DoctorModel {
     );
   }
 
+  // ─── إنشاء النموذج من JSON ────────────────────────────────
+  factory DoctorModel.fromJson(Map<String, dynamic> json) {
+    return DoctorModel(
+      id: json['id'] ?? '',
+      userId: json['user_id'] ?? '',
+      fullName: json['full_name'] ?? '',
+      profileImageUrl: json['profile_image_url'],
+      specialty: json['specialty'] ?? '',
+      subSpecialties: List<String>.from(json['sub_specialties'] ?? []),
+      medicalLicenseNumber: json['medical_license_number'] ?? '',
+      yearsOfExperience: json['years_of_experience'] ?? 0,
+      clinicName: json['clinic_name'],
+      clinicAddress: json['clinic_address'],
+      clinicLatitude: json['clinic_latitude']?.toDouble(),
+      clinicLongitude: json['clinic_longitude']?.toDouble(),
+      consultationFee: (json['consultation_fee'] ?? 0).toDouble(),
+      teleconsultationFee: (json['teleconsultation_fee'] ?? 0).toDouble(),
+      workingHours: (json['working_hours'] as List<dynamic>? ?? [])
+          .map((w) => WorkingHours.fromMap(w))
+          .toList(),
+      education: List<String>.from(json['education'] ?? []),
+      certifications: List<String>.from(json['certifications'] ?? []),
+      aboutMe: json['about_me'],
+      averageRating: (json['average_rating'] ?? 0.0).toDouble(),
+      totalReviews: json['total_reviews'] ?? 0,
+      isAvailableForTeleconsultation:
+          json['is_available_for_teleconsultation'] ?? false,
+      isApprovedByAdmin: json['is_approved_by_admin'] ?? false,
+      status: DoctorStatus.values.firstWhere(
+        (s) => s.name == json['status'],
+        orElse: () => DoctorStatus.active,
+      ),
+    );
+  }
+
   // ─── نسخ النموذج مع تعديل ────────────────────────────────
   DoctorModel copyWith({
+    String? fullName,
+    String? profileImageUrl,
     String? specialty,
     List<String>? subSpecialties,
     String? clinicName,
@@ -190,6 +235,8 @@ class DoctorModel {
     return DoctorModel(
       id: id,
       userId: userId,
+      fullName: fullName ?? this.fullName,
+      profileImageUrl: profileImageUrl ?? this.profileImageUrl,
       specialty: specialty ?? this.specialty,
       subSpecialties: subSpecialties ?? this.subSpecialties,
       medicalLicenseNumber: medicalLicenseNumber,

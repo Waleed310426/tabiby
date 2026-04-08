@@ -9,45 +9,45 @@ import 'appointment_model.dart'; // لاستخدام PaymentMethod
 
 // ─── نوع المعاملة المالية ────────────────────────────────────
 enum TransactionType {
-  payment,  // دفع (خصم من المريض)
-  refund,   // استرداد (إعادة المبلغ للمريض)
-  payout,   // صرف للطبيب / الصيدلية
-  topUp,    // شحن المحفظة الداخلية
+  payment, // دفع (خصم من المريض)
+  refund, // استرداد (إعادة المبلغ للمريض)
+  payout, // صرف للطبيب / الصيدلية
+  topUp, // شحن المحفظة الداخلية
 }
 
 // ─── حالة المعاملة المالية ───────────────────────────────────
 enum TransactionStatus {
-  pending,   // قيد المعالجة
+  pending, // قيد المعالجة
   completed, // مكتملة بنجاح
-  failed,    // فشلت
-  refunded,  // تم الاسترداد
+  failed, // فشلت
+  refunded, // تم الاسترداد
 }
 
 // ─── الكيان المرتبط بالمعاملة ────────────────────────────────
 enum TransactionReference {
-  appointment,   // موعد طبي
-  consultation,  // استشارة عن بعد
-  prescription,  // وصفة / صرف أدوية
-  labTest,       // فحص مخبري
-  walletTopUp,   // شحن المحفظة
+  appointment, // موعد طبي
+  consultation, // استشارة عن بعد
+  prescription, // وصفة / صرف أدوية
+  labTest, // فحص مخبري
+  walletTopUp, // شحن المحفظة
 }
 
 // ─── النموذج الرئيسي للمعاملة المالية ───────────────────────
 class PaymentModel {
-  final String id;                         // معرّف المعاملة الفريد
-  final String payerId;                    // معرّف الدافع (المريض عادةً)
-  final String? receiverId;                // معرّف المُستلِم (الطبيب / الصيدلية)
-  final double amount;                     // المبلغ بالعملة المحددة
-  final String currency;                   // العملة (مثال: "YER"، "USD")
-  final PaymentMethod method;              // طريقة الدفع
-  final TransactionType type;              // نوع المعاملة
-  final TransactionStatus status;          // حالة المعاملة
+  final String id; // معرّف المعاملة الفريد
+  final String payerId; // معرّف الدافع (المريض عادةً)
+  final String? receiverId; // معرّف المُستلِم (الطبيب / الصيدلية)
+  final double amount; // المبلغ بالعملة المحددة
+  final String currency; // العملة (مثال: "YER"، "USD")
+  final PaymentMethod method; // طريقة الدفع
+  final TransactionType type; // نوع المعاملة
+  final TransactionStatus status; // حالة المعاملة
   final TransactionReference referenceType; // نوع الكيان المدفوع من أجله
-  final String referenceId;               // معرّف الكيان (موعد، استشارة...)
-  final String? transactionRef;            // رقم مرجعية الدفع من بوابة الدفع
-  final String? failureReason;             // سبب الفشل إن وُجد
-  final DateTime createdAt;               // تاريخ المعاملة
-  final DateTime updatedAt;               // تاريخ آخر تحديث
+  final String referenceId; // معرّف الكيان (موعد، استشارة...)
+  final String? transactionRef; // رقم مرجعية الدفع من بوابة الدفع
+  final String? failureReason; // سبب الفشل إن وُجد
+  final DateTime createdAt; // تاريخ المعاملة
+  final DateTime updatedAt; // تاريخ آخر تحديث
 
   const PaymentModel({
     required this.id,

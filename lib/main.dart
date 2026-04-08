@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 // ─── استيراد Firebase ────────────────────────────────────────
 import 'package:firebase_core/firebase_core.dart';
@@ -20,13 +21,24 @@ import 'package:google_fonts/google_fonts.dart';
 // ─── استيراد ملف الثيم المستقل ──────────────────────────────
 import 'core/theme/app_theme.dart';
 
+// ─── المهام والمصادقة ─────────────────────────────────────────
+import 'core/network/api_client.dart';
+import 'features/auth/data/manage/auth_remote_data_source.dart';
+import 'features/auth/data/repo/auth_repo_impl.dart';
+import 'features/auth/presentation/manager/auth_provider.dart';
+import 'features/auth/presentation/view/pages/login_page.dart';
+
 // ─── النقطة الرئيسية لبدء التطبيق ──────────────────────────
 void main() async {
   // التأكد من تهيئة Flutter Bindings قبل أي عملية async
   WidgetsFlutterBinding.ensureInitialized();
 
   // تهيئة Firebase (يجب أن تكون أول عملية async)
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp(); // تم إيقافه مؤقتاً لتخطي خطأ הWeb
+
+  // ─── إيقاف تحميل الخطوط من الإنترنت ───────────────────────
+  // ملاحظة: لا نوقف runtime fetching لأن google_fonts يحتاج
+  // مسار خاص لملفاته - الخطوط المحلية معرّفة في pubspec.yaml
 
   // تثبيت اتجاه الشاشة عمودياً فقط
   await SystemChrome.setPreferredOrientations([
@@ -35,25 +47,30 @@ void main() async {
   ]);
 
   // تشغيل التطبيق
-  runApp(const TabibyApp());
+  runApp(const TabibiApp());
 }
 
 // ─── الكلاس الجذر للتطبيق ────────────────────────────────────
-class TabibyApp extends StatelessWidget {
-  const TabibyApp({super.key});
+class TabibiApp extends StatelessWidget {
+  const TabibiApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // ─── إعداد الاعتماديات الأساسية مؤقتاً ─────────────────────
+    final apiClient = ApiClient();
+    final authRemoteDataSource = AuthRemoteDataSource(apiClient: apiClient);
+    final authRepoImpl = AuthRepoImpl(remoteDataSource: authRemoteDataSource);
+
     // MultiProvider: يجمع جميع موفري الحالة في مكان واحد
-    // سيتم إضافة الموفرين هنا عند بناء طبقة providers
     return MultiProvider(
-      providers: const [
-        // TODO: إضافة موفري الحالة هنا
-        // مثال: ChangeNotifierProvider(create: (_) => AuthProvider()),
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(authRepo: authRepoImpl),
+        ),
       ],
       child: MaterialApp(
         // ─── إعدادات التطبيق الأساسية ─────────────────────
-        title: 'طبيبي — Tabiby',
+        title: 'طبيبي — Tabibi',
         debugShowCheckedModeBanner: false, // إخفاء شريط "Debug"
 
         // ─── إعداد اللغة والاتجاه ──────────────────────────
@@ -64,6 +81,13 @@ class TabibyApp extends StatelessWidget {
           Locale('en'),       // الإنجليزية
         ],
 
+        // ─── إعداد مندوبي الترجمة (مطلوب لـ TextField) ────
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+
         // ─── إعداد الثيم الرئيسي (الوضع النهاري) ──────────
         // يُرجع إعدادات الثيم من ملف app_theme.dart
         theme: AppTheme.light,
@@ -72,8 +96,7 @@ class TabibyApp extends StatelessWidget {
         darkTheme: AppTheme.dark,
 
         // ─── الشاشة الافتراضية عند فتح التطبيق ─────────────
-        // TODO: استبدال هذه الشاشة بشاشة Splash عند الإنشاء
-        home: const _TabibyPlaceholderScreen(),
+        home: const LoginPage(),
       ),
     );
   }
@@ -84,8 +107,8 @@ class TabibyApp extends StatelessWidget {
 
 // ─── شاشة مؤقتة حتى اكتمال الشاشات الحقيقية ──────────────
 // TODO: حذف هذه الشاشة عند إنشاء شاشة Splash الحقيقية
-class _TabibyPlaceholderScreen extends StatelessWidget {
-  const _TabibyPlaceholderScreen();
+class _TabibiPlaceholderScreen extends StatelessWidget {
+  const _TabibiPlaceholderScreen();
 
   @override
   Widget build(BuildContext context) {

@@ -61,7 +61,6 @@ class MedicalRecordModel {
     };
   }
 
-  // ─── إنشاء النموذج من Firestore ─────────────────────────
   factory MedicalRecordModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return MedicalRecordModel(
@@ -78,6 +77,32 @@ class MedicalRecordModel {
       attachmentsUrls: List<String>.from(data['attachments_urls'] ?? []),
       createdAt: (data['created_at'] as Timestamp).toDate(),
       updatedAt: (data['updated_at'] as Timestamp).toDate(),
+      sharedWith: List<String>.from(data['shared_with'] ?? []),
+    );
+  }
+
+  // ─── إنشاء النموذج من JSON ───────────────────────────────
+  factory MedicalRecordModel.fromJson(Map<String, dynamic> data) {
+    return MedicalRecordModel(
+      id: data['id'] ?? '',
+      patientId: data['patient_id'] ?? '',
+      doctorId: data['doctor_id'],
+      recordType: RecordType.values.firstWhere(
+        (r) => r.name == data['record_type'],
+        orElse: () => RecordType.medicalReport,
+      ),
+      title: data['title'] ?? '',
+      description: data['description'] ?? '',
+      recordDate: data['record_date'] != null
+          ? DateTime.tryParse(data['record_date'].toString()) ?? DateTime.now()
+          : DateTime.now(),
+      attachmentsUrls: List<String>.from(data['attachments_urls'] ?? []),
+      createdAt: data['created_at'] != null 
+          ? DateTime.tryParse(data['created_at'].toString()) ?? DateTime.now()
+          : DateTime.now(),
+      updatedAt: data['updated_at'] != null 
+          ? DateTime.tryParse(data['updated_at'].toString()) ?? DateTime.now()
+          : DateTime.now(),
       sharedWith: List<String>.from(data['shared_with'] ?? []),
     );
   }

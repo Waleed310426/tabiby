@@ -23,6 +23,9 @@ class AppColors {
   // درجة أغمق من اللون الرئيسي — للنصوص المميزة والحدود
   static const Color primaryDark = Color(0xFF0D47A1);
 
+  // تدرج لوني أزرق (Gradient) — يُستخدم للخلفيات العليا والهيدرات
+  static const List<Color> primaryGradient = [Color(0xFF1565C0), Color(0xFF42A5F5)];
+
   // ─── الألوان الثانوية (Secondary) ─────────────────────────
   // الأخضر الصحي — للحالات النشطة والنجاح والموافقة
   static const Color secondary = Color(0xFF26A69A);

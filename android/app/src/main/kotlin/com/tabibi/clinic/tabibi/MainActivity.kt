@@ -1,4 +1,4 @@
-package com.tabiby.clinic.tabiby
+﻿package com.tabibi.clinic.tabibi
 
 import io.flutter.embedding.android.FlutterActivity
 

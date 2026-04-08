@@ -91,7 +91,6 @@ class AppointmentModel {
     };
   }
 
-  // ─── إنشاء النموذج من Firestore ─────────────────────────
   factory AppointmentModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return AppointmentModel(
@@ -121,6 +120,44 @@ class AppointmentModel {
       ),
       createdAt: (data['created_at'] as Timestamp).toDate(),
       updatedAt: (data['updated_at'] as Timestamp).toDate(),
+    );
+  }
+
+  // ─── إنشاء النموذج من JSON ───────────────────────────────
+  factory AppointmentModel.fromJson(Map<String, dynamic> data) {
+    return AppointmentModel(
+      id: data['id'] ?? '',
+      patientId: data['patient_id'] ?? '',
+      doctorId: data['doctor_id'] ?? '',
+      facilityId: data['facility_id'],
+      appointmentDate: data['appointment_date'] != null
+          ? DateTime.tryParse(data['appointment_date'].toString()) ?? DateTime.now()
+          : DateTime.now(),
+      appointmentTime: data['appointment_time'] ?? '',
+      type: AppointmentType.values.firstWhere(
+        (t) => t.name == data['type'],
+        orElse: () => AppointmentType.clinicVisit,
+      ),
+      status: AppointmentStatus.values.firstWhere(
+        (s) => s.name == data['status'],
+        orElse: () => AppointmentStatus.pending,
+      ),
+      patientNotes: data['patient_notes'],
+      doctorNotes: data['doctor_notes'],
+      paymentStatus: PaymentStatus.values.firstWhere(
+        (s) => s.name == data['payment_status'],
+        orElse: () => PaymentStatus.pending,
+      ),
+      paymentMethod: PaymentMethod.values.firstWhere(
+        (m) => m.name == data['payment_method'],
+        orElse: () => PaymentMethod.cash,
+      ),
+      createdAt: data['created_at'] != null 
+          ? DateTime.tryParse(data['created_at'].toString()) ?? DateTime.now()
+          : DateTime.now(),
+      updatedAt: data['updated_at'] != null 
+          ? DateTime.tryParse(data['updated_at'].toString()) ?? DateTime.now()
+          : DateTime.now(),
     );
   }
 
